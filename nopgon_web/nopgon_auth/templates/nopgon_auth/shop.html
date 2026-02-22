@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>🛒 노곤 Shop</h2>
+
+<div style="
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+">
+
+    <div style="
+        border:1px solid #ddd;
+        padding:15px;
+        width:220px;
+        background:white;
+    ">
+        <img src="https://via.placeholder.com/200" width="100%">
+        <h3>노곤 굿즈</h3>
+        <p>29,000원</p>
+
+        <button onclick="showPreparing()" style="width:100%;">
+            구매하기
+        </button>
+
+        <p id="prepare-text" style="display:none; color:red; margin-top:8px;">
+            서비스 준비 중입니다
+        </p>
+    </div>
+</div>
+
+<script>
+function showPreparing() {
+    document.getElementById("prepare-text").style.display = "block";
+}
+</script>
+
+{% endblock %}

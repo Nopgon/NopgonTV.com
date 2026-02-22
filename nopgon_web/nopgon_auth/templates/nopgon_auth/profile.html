@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>프로필</h2>
+
+<p>아이디 : {{ request.user.username }}</p>
+<p>등급 : {{ profile.role }}</p>
+
+{% endblock %}

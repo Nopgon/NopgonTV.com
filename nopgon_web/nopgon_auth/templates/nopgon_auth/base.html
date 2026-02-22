@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>노곤TV</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    background: #f9f9f9;
+}
+
+/* 헤더 */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background: white;
+    border-bottom: 1px solid #ddd;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+    color: #ff3d3d;
+    text-decoration: none;
+}
+
+/* 검색 */
+.search-box {
+    width: 40%;
+}
+
+.search-box input {
+    width: 70%;
+    padding: 8px;
+}
+
+.search-box button {
+    padding: 8px 15px;
+}
+
+/* 사이드바 */
+.sidebar {
+    width: 200px;
+    background: white;
+    position: fixed;
+    top: 60px;
+    bottom: 0;
+    border-right: 1px solid #ddd;
+    padding: 10px;
+}
+
+.sidebar a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+}
+
+.sidebar a:hover {
+    background: #eee;
+}
+
+/* 컨텐츠 */
+.container {
+    margin-left: 220px;
+    padding: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 상단 헤더 -->
+<div class="header">
+
+    <a href="/" class="logo">📺 노곤TV</a>
+
+    <form class="search-box" method="get" action="/">
+        <input type="text" name="q" placeholder="검색">
+        <button type="submit">검색</button>
+    </form>
+
+    <div>
+        {% if user.is_authenticated %}
+            <a href="{% url 'profile' %}">👤 {{ user.username }}</a>
+            <a href="{% url 'logout' %}">로그아웃</a>
+        {% else %}
+            <a href="{% url 'login' %}">로그인</a>
+        {% endif %}
+
+        <!-- 🔥 노곤샵 버튼 -->
+        <button onclick="goShop()" style="margin-left:10px;">
+            🛒 노곤Shop
+        </button>
+    </div>
+
+</div>
+
+<!-- 사이드바 -->
+<div class="sidebar">
+    <a href="/">🏠 홈</a>
+</div>
+
+<!-- 메인 컨텐츠 -->
+<div class="container">
+    {% block content %}{% endblock %}
+</div>
+
+<!-- JS는 body 맨 아래 -->
+<script>
+function goShop() {
+    window.location.href = "/shop/";
+}
+</script>
+<script>
+function showPreparing() {
+    const text = document.getElementById("prepare-text");
+
+    if (text) {
+        text.style.display = "block";
+    } else {
+        alert("현재 서비스 준비 중입니다.");
+    }
+}
+</script>
+
+</body>
+</html>
